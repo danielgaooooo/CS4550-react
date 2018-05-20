@@ -13,8 +13,8 @@ export default class CourseList extends React.Component {
     findAllCourses() {
         this.courseService.findAllCourses()
             .then((courses) => {
-            this.setState({courses: courses});
-        })
+                this.setState({courses: courses});
+            })
     }
 
     componentDidMount() {
@@ -69,7 +69,8 @@ export default class CourseList extends React.Component {
                         <th>
                             <button
                                 onClick={this.createCourse}
-                                className="btn btn-primary">Add</button>
+                                className="btn btn-primary">Add
+                            </button>
                         </th>
                     </tr>
                     </thead>
