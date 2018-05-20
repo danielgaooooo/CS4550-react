@@ -30,7 +30,6 @@ export default class CourseList extends React.Component {
     }
 
     createCourse() {
-        console.log(this.state);
         this.courseService.createCourse(this.state.course)
             .then(this.findAllCourses());
     }
