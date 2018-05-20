@@ -6,7 +6,6 @@ import '../node_modules/font-awesome/css/font-awesome.min.css';
 
 ReactDOM.render(
     <div className="container-fluid">
-        <h1>WHAT UP BITTTCH</h1>
         <CourseManager/>
     </div>,
     document.getElementById('root')
