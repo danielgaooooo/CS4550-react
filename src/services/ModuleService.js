@@ -10,25 +10,24 @@ export default class ModuleService {
 
     findAllModulesForCourse(courseId) {
         return fetch(
-            MODULE_API_URL
-                .replace('CID', courseId))
+            MODULE_API_URL.replace('CID', courseId))
             .then(function (response) {
                 return response.json();
             })
     }
 
     createModule(courseId, module) {
-        return fetch(MODULE_API_URL.replace('CID', courseId),
-            {
-                body: JSON.stringify(module),
-                headers: { 'Content-Type': 'application/json' },
-                method: 'POST'
-            }).then(function (response)
-        { return response.json(); })
+        return fetch(MODULE_API_URL.replace('CID', courseId), {
+            body: JSON.stringify(module),
+            headers: {'Content-Type': 'application/json'},
+            method: 'POST'
+        }).then(function (response) {
+            return response.json();
+        })
     }
 
     static get instance() {
-        if(!this[_singleton])
+        if (!this[_singleton])
             this[_singleton] = new ModuleService(_singleton);
         return this[_singleton]
     }

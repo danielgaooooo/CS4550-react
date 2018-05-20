@@ -16,7 +16,7 @@ class CourseService {
 
     findAllCourses() {
         return fetch(COURSE_API_URL)
-            .then(function(response){
+            .then(function (response) {
                 return response.json();
             });
     }
@@ -28,11 +28,16 @@ class CourseService {
                 'Content-Type': 'application/json'
             },
             method: 'POST'
-        }).then(function(response) {
+        }).then(function (response) {
             return response.json();
         });
     }
 
+    deleteCourse(courseId) {
+        return fetch(COURSE_API_URL + '/' + courseId, {
+            method: 'delete'
+        })
+    }
 }
 
 export default CourseService;
