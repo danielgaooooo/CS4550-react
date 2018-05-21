@@ -43,7 +43,7 @@ export default class ModuleList extends Component {
 
     createModule() {
         this.moduleService.createModule(this.props.courseId, this.state.module)
-            .then(this.findAllModulesForCourse(this.props.courseId));
+            .then(() => this.findAllModulesForCourse(this.props.courseId));
         this.renderListOfModules();
     }
 
