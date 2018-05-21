@@ -14,6 +14,7 @@ export default class ModuleList extends Component {
         this.createModule = this.createModule.bind(this);
         this.titleChanged = this.titleChanged.bind(this);
         this.setCourseId = this.setCourseId.bind(this);
+        this.handleDelete = this.handleDelete.bind(this);
         this.moduleService = ModuleService.instance;
         this.courseService = CourseService.instance;
     }
@@ -53,11 +54,18 @@ export default class ModuleList extends Component {
         this.setState({module: {title: event.target.value}});
     }
 
+    handleDelete() {
+        this.findAllModulesForCourse(this.props.courseId);
+    }
+
     renderListOfModules() {
-        var id = this.state.courseId;
+        const reset = this.handleDelete;
+        let id = this.state.courseId;
         return this.state.modules.map(function (module) {
-            return <ModuleListItem courseId = {id} module={module}
-                                   key={module.id}/>
+            return <ModuleListItem courseId = {id}
+                                   module={module}
+                                   key={module.id}
+                                   handler={reset}/>
         });
     }
 

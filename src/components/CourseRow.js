@@ -12,7 +12,6 @@ export default class CourseRow extends React.Component {
     deleteCourse() {
         this.courseService.deleteCourse(this.props.course.id)
             .then(this.props.handler);
-
     }
 
     render() {

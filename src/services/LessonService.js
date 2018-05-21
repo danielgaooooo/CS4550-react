@@ -58,7 +58,16 @@ class LessonService {
     }
 
     updateLesson(lessonId, lesson) {
-
+        return fetch(LESSON_API_URL + '/' + lessonId, {
+            method: 'put',
+            body: JSON.stringify(lesson),
+            headers: {
+                'content-type': 'application/json'
+            }
+        })
+            .then(function (response) {
+                return response.json();
+            })
     }
 }
 

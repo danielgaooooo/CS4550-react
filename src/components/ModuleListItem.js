@@ -1,9 +1,17 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import ModuleService from '../services/ModuleService'
 
 export default class ModuleListItem extends React.Component {
     constructor(props) {
         super(props);
+        this.moduleService = ModuleService.instance;
+        this.deleteModule = this.deleteModule.bind(this);
+    }
+
+    deleteModule() {
+        this.moduleService.deleteModule(this.props.module.id)
+            .then(this.props.handler);
     }
 
     render() {
@@ -13,8 +21,12 @@ export default class ModuleListItem extends React.Component {
                     {this.props.module.title}
                 </Link>
                 <span className="float-right">
-                <i className="fa fa-trash"></i>
-                <i className="fa fa-pencil"></i>
+                    <button onClick={this.deleteModule}>
+                        <i className="fa fa-trash"></i>
+                    </button>
+                    <button>
+                        <i className="fa fa-pencil"></i>
+                    </button>
                 </span>
             </li>
         )
