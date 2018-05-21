@@ -16,6 +16,8 @@ export default class CourseRow extends React.Component {
     }
 
     render() {
+        var date = this.props.course.modified.substr(0, 16);
+
         return (
             <tr>
                 <td>
@@ -24,8 +26,7 @@ export default class CourseRow extends React.Component {
                     </Link>
                 </td>
                 <td>{this.props.course.owner}</td>
-                <td>{this.props.course.created}</td>
-                <td>{this.props.course.created}</td>
+                <td>{date.substr(0, 10) + ' at ' + date.substr(11)}</td>
                 <td>
                     <button
                         onClick={this.deleteCourse}

@@ -56,6 +56,10 @@ class LessonService {
                 return response.json();
             });
     }
+
+    updateLesson(lessonId, lesson) {
+
+    }
 }
 
 export default LessonService;

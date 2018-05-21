@@ -21,6 +21,13 @@ class CourseService {
             });
     }
 
+    findCourseById(courseId) {
+        return fetch(COURSE_API_URL + '/' + courseId)
+            .then(function (response) {
+                return response.json();
+            })
+    }
+
     createCourse(course) {
         return fetch(COURSE_API_URL, {
             body: JSON.stringify(course),
@@ -37,6 +44,19 @@ class CourseService {
         return fetch(COURSE_API_URL + '/' + courseId, {
             method: 'delete'
         })
+    }
+
+    updateCourse(courseId, course) {
+        return fetch(COURSE_API_URL + '/' + courseId, {
+            method: 'put',
+            body: JSON.stringify(course),
+            headers: {
+                'content-type': 'application/json'
+            }
+        })
+            .then(function (response) {
+                return response.json();
+            })
     }
 }
 

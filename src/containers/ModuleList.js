@@ -64,7 +64,6 @@ export default class ModuleList extends Component {
     render() {
         return (
             <div>
-                <h3>Modules</h3>
                 <input onChange={this.titleChanged}
                        value={this.state.module.title}
                        placeholder="New Module"

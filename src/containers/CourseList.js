@@ -30,7 +30,8 @@ export default class CourseList extends React.Component {
     titleChanged(event) {
         this.setState({
             course: {
-                title: event.target.value
+                title: event.target.value,
+                owner: "Daniel Gao"
             }
         })
     }
@@ -62,8 +63,7 @@ export default class CourseList extends React.Component {
                     <tr>
                         <th>Title</th>
                         <th>Owner</th>
-                        <th>Date modified</th>
-                        <th>Time modified</th>
+                        <th>Last modified</th>
                         <th>&nbsp;</th>
                     </tr>
                     <tr>
@@ -74,7 +74,6 @@ export default class CourseList extends React.Component {
                                 id="titleFld"
                                 placeholder="CS4550"/>
                         </th>
-                        <th>&nbsp;</th>
                         <th>&nbsp;</th>
                         <th>&nbsp;</th>
                         <th>
