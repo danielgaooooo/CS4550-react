@@ -6,11 +6,14 @@ export default class CourseRow extends React.Component {
     constructor(props) {
         super(props);
         this.courseService = CourseService.instance;
+        this.deleteCourse = this.deleteCourse.bind(this);
     }
 
-    // deleteCourse(courseId) {
-    //     this.courseService.deleteCourse(courseId).then()
-    // }
+    deleteCourse() {
+        this.courseService.deleteCourse(this.props.course.id)
+            .then(this.props.handler);
+
+    }
 
     render() {
         return (
@@ -20,9 +23,13 @@ export default class CourseRow extends React.Component {
                         {this.props.course.title}
                     </Link>
                 </td>
+                <td>{this.props.course.owner}</td>
+                <td>{this.props.course.created}</td>
+                <td>{this.props.course.created}</td>
                 <td>
                     <button
-                            className="btn btn-danger">
+                        onClick={this.deleteCourse}
+                        className="btn btn-danger">
                         Delete
                     </button>
                 </td>

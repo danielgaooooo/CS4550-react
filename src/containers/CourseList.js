@@ -8,6 +8,12 @@ export default class CourseList extends React.Component {
         this.courseService = CourseService.instance;
         this.titleChanged = this.titleChanged.bind(this);
         this.createCourse = this.createCourse.bind(this);
+        this.handleDelete = this.handleDelete.bind(this);
+    }
+
+    createCourse() {
+        this.courseService.createCourse(this.state.course)
+            .then(() => this.findAllCourses());
     }
 
     findAllCourses() {
@@ -29,17 +35,17 @@ export default class CourseList extends React.Component {
         })
     }
 
-    createCourse() {
-        this.courseService.createCourse(this.state.course)
-            .then(this.findAllCourses());
+    handleDelete() {
+        this.findAllCourses();
     }
 
     renderCourseRows() {
+        var handleDelete = this.handleDelete;
         let courses = null;
         if (this.state) {
             courses = this.state.courses.map(
                 function (course) {
-                    return <CourseRow key={course.id} course={course}/>
+                    return <CourseRow key={course.id} course={course} handler={handleDelete}/>
                 }
             );
         }
@@ -55,6 +61,9 @@ export default class CourseList extends React.Component {
                     <thead>
                     <tr>
                         <th>Title</th>
+                        <th>Owner</th>
+                        <th>Date modified</th>
+                        <th>Time modified</th>
                         <th>&nbsp;</th>
                     </tr>
                     <tr>
@@ -65,6 +74,9 @@ export default class CourseList extends React.Component {
                                 id="titleFld"
                                 placeholder="CS4550"/>
                         </th>
+                        <th>&nbsp;</th>
+                        <th>&nbsp;</th>
+                        <th>&nbsp;</th>
                         <th>
                             <button
                                 onClick={this.createCourse}

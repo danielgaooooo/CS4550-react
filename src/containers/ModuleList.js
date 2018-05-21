@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import ModuleListItem from '../components/ModuleListItem';
 import ModuleService from '../services/ModuleService'
+import CourseService from '../services/CourseService';
 
 export default class ModuleList extends Component {
     constructor(props) {
@@ -14,6 +15,7 @@ export default class ModuleList extends Component {
         this.titleChanged = this.titleChanged.bind(this);
         this.setCourseId = this.setCourseId.bind(this);
         this.moduleService = ModuleService.instance;
+        this.courseService = CourseService.instance;
     }
 
     setModules(modules) {
@@ -52,8 +54,9 @@ export default class ModuleList extends Component {
     }
 
     renderListOfModules() {
+        var id = this.state.courseId;
         return this.state.modules.map(function (module) {
-            return <ModuleListItem module={module}
+            return <ModuleListItem courseId = {id} module={module}
                                    key={module.id}/>
         });
     }
@@ -61,10 +64,10 @@ export default class ModuleList extends Component {
     render() {
         return (
             <div>
-                <h3>Module List for course: {this.state.courseId}</h3>
+                <h3>Modules</h3>
                 <input onChange={this.titleChanged}
                        value={this.state.module.title}
-                       placeholder="title"
+                       placeholder="New Module"
                        className="form-control"/>
                 <button onClick={this.createModule} className="btn btn-primary btn-block">
                     <i className="fa fa-plus"></i>

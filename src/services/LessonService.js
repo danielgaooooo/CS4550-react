@@ -14,9 +14,9 @@ class LessonService {
         return this[_singleton]
     }
 
-    createLesson(lesson) {
+    createLesson(courseId, lesson) {
         return fetch(LONG_LESSON_API_URL
-            .replace('CID', lesson.module.course.id)
+            .replace('CID', courseId)
             .replace('MID', lesson.module.id), {
             body: JSON.stringify(lesson),
             headers: {
@@ -34,7 +34,7 @@ class LessonService {
         })
     }
 
-    findAllCourses() {
+    findAllLessons() {
         return fetch(LESSON_API_URL)
             .then(function (response) {
                 return response.json();
@@ -58,4 +58,4 @@ class LessonService {
     }
 }
 
-export default CourseService;
+export default LessonService;
