@@ -9,9 +9,10 @@ export default class LessonRow extends React.Component {
     }
 
     deleteLesson() {
-        this.lessonService.deleteLesson(this.props.lesson.id)
-            .then(this.props.handler);
-
+        if (window.confirm('Are you sure you want to delete this lesson?')) {
+            this.lessonService.deleteLesson(this.props.lesson.id)
+                .then(this.props.handler);
+        }
     }
 
     render() {

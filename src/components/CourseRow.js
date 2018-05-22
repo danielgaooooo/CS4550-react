@@ -10,8 +10,10 @@ export default class CourseRow extends React.Component {
     }
 
     deleteCourse() {
-        this.courseService.deleteCourse(this.props.course.id)
-            .then(this.props.handler);
+        if (window.confirm('Are you sure you want to delete this course?')) {
+            this.courseService.deleteCourse(this.props.course.id)
+                .then(this.props.handler);
+        }
     }
 
     render() {
@@ -27,18 +29,21 @@ export default class CourseRow extends React.Component {
         return (
             <tr>
                 <td>
-                    <Link to={`/course/${this.props.course.id}`}>
-                        {this.props.course.title}
-                    </Link>
+                    {this.props.course.title}
                 </td>
                 <td>{this.props.course.owner}</td>
                 <td>{date.substr(0, 8) + dateDay + ' at ' + dateHour + date.substr(13)}</td>
                 <td>
-                    <button
-                        onClick={this.deleteCourse}
-                        className="btn btn-danger">
-                        Delete
+                <span>
+                    <button onClick={this.deleteCourse}>
+                        <i className="fa fa-trash"></i>
                     </button>
+                    <Link to={`/course/${this.props.course.id}`}>
+                    <button>
+                        <i className="fa fa-pencil"></i>
+                    </button>
+                    </Link>
+                </span>
                 </td>
             </tr>
         )

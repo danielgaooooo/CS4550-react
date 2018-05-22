@@ -79,8 +79,8 @@ export default class CourseList extends React.Component {
                         <th>&nbsp;</th>
                         <th>
                             <button
-                                onClick={this.createCourse}
-                                className="btn btn-primary">Add
+                                onClick={this.createCourse}>
+                                <i className="fa fa-plus"></i>
                             </button>
                         </th>
                     </tr>

@@ -10,8 +10,10 @@ export default class ModuleListItem extends React.Component {
     }
 
     deleteModule() {
-        this.moduleService.deleteModule(this.props.module.id)
-            .then(this.props.handler);
+        if (window.confirm('Are you sure you want to delete this module?')) {
+            this.moduleService.deleteModule(this.props.module.id)
+                .then(this.props.handler);
+        }
     }
 
     render() {
