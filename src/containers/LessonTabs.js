@@ -1,6 +1,7 @@
 import React from 'react'
 import LessonService from "../services/LessonService";
 import LessonRow from "../components/LessonRow";
+import ModuleService from "../services/ModuleService";
 
 export default class LessonTabs
     extends React.Component {
@@ -13,25 +14,32 @@ export default class LessonTabs
             lessons: []
         };
         this.lessonService = LessonService.instance;
+        this.moduleService = ModuleService.instance;
         this.titleChanged = this.titleChanged.bind(this);
         this.createLesson = this.createLesson.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
     }
 
     findAllLessons() {
-        this.lessonService.findAllLessons()
+        this.lessonService.findAllLessonsForModule(this.props.match.params.courseId,
+            this.props.match.params.moduleId)
             .then((lessons) => {
                 this.setState({lessons: lessons});
-            })
+            });
     }
-
-    componentDidMount() {
-        this.setCourseId(this.props.courseId);
-    }
-
-    setCourseId(courseId) {
-        this.setState({courseId: courseId});
-    }
+    //
+    // componentDidMount() {
+    //     this.findAllLessons();
+    // }
+    //
+    // setCourseId(courseId) {
+    //     this.setState({courseId: courseId});
+    // }
+    //
+    // componentWillReceiveProps(newProps) {
+    //     this.setCourseId(newProps.courseId);
+    //     this.findAllLessons();
+    // }
 
     titleChanged(event) {
         this.setState({
@@ -42,8 +50,9 @@ export default class LessonTabs
     }
 
     createLesson() {
-        this.lessonService.createLesson(this.state.courseId, this.state.lesson)
-            .then(this.findAllLessons());
+        this.lessonService.createLesson(this.props.match.params.courseId, this.props.match.params.moduleId,
+            this.state.lesson)
+            .then(() => this.findAllLessons());
     }
 
     handleDelete() {
@@ -68,15 +77,25 @@ export default class LessonTabs
     render() {
         return (
             <div>
-                <input onChange={this.titleChanged}
-                       value={this.state.lesson.title}
-                       placeholder="New Lesson"
-                       className="form-control"/>
-                <button onClick={this.createLesson} className="btn btn-primary btn-block">
-                    <i className="fa fa-plus"></i>
-                </button>
+                <h3>Lessons</h3>
                 <ul className="nav nav-tabs">
                     {this.renderLessonTabs()}
+                    <li className="nav-item, row" style={{paddingLeft: 15}}>
+                        <div className="nav-link active" style={{padding: 0}}>
+                            <div className="list-group-item">
+                                <input
+                                    onChange={this.titleChanged}
+                                    value={this.state.lesson.title}
+                                    placeholder="New Lesson"
+                                    className="form-control"/>
+                                <span>
+                                    <button className="btn-block" onClick={this.createLesson}>
+                                        <i className="fa fa-plus"></i>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                    </li>
                 </ul>
             </div>
         );

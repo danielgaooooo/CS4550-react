@@ -1,28 +1,39 @@
 import React from 'react';
 import LessonService from '../services/LessonService';
-import {Link} from 'react-router-dom';
 
 export default class LessonRow extends React.Component {
     constructor(props) {
         super(props);
         this.lessonService = LessonService.instance;
-        this.deleteCourse = this.deleteCourse.bind(this);
+        this.deleteLesson = this.deleteLesson.bind(this);
     }
 
-    deleteCourse() {
-        this.lessonService.deleteCourse(this.props.lesson.id)
+    deleteLesson() {
+        this.lessonService.deleteLesson(this.props.lesson.id)
             .then(this.props.handler);
 
     }
 
     render() {
         return (
-            <div>
-                <li className="nav-item">
-                    <a className="nav-link"
-                       href="#">{this.props.lesson.title}</a>
-                </li>
-            </div>
+            <li className="nav-item, row" style={{paddingLeft: 15, paddingRight: 15}}>
+                <div className="nav-link" style={{alignItems: "center",
+                    justifyContent: "center", display: "flex", padding: 0}}>
+                    <div className="list-group-item">
+                        <a style={{paddingRight: 10}} href="#">
+                            {this.props.lesson.title}
+                        </a>
+                        <span>
+                            <button onClick={this.deleteLesson}>
+                                <i className="fa fa-trash"></i>
+                            </button>
+                            <button>
+                                <i className="fa fa-pencil"></i>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </li>
         )
     }
 }

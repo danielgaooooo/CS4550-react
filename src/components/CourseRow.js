@@ -16,7 +16,14 @@ export default class CourseRow extends React.Component {
 
     render() {
         var date = this.props.course.modified.substr(0, 16);
-
+        var dateDay = parseInt(date.substr(8, 2));
+        var dateMonth = parseInt(date.substr(5, 2));
+        var dateYear = parseInt(date.substr(0, 4));
+        var dateHour = parseInt(date.substr(11, 13)) - 4;
+        if (dateHour < dateHour % 24) {
+            dateDay -= 1;
+            dateHour %= 24;
+        }
         return (
             <tr>
                 <td>
@@ -25,7 +32,7 @@ export default class CourseRow extends React.Component {
                     </Link>
                 </td>
                 <td>{this.props.course.owner}</td>
-                <td>{date.substr(0, 10) + ' at ' + date.substr(11)}</td>
+                <td>{date.substr(0, 8) + dateDay + ' at ' + dateHour + date.substr(13)}</td>
                 <td>
                     <button
                         onClick={this.deleteCourse}

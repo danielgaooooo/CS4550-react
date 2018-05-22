@@ -14,10 +14,10 @@ class LessonService {
         return this[_singleton]
     }
 
-    createLesson(courseId, lesson) {
+    createLesson(courseId, moduleId, lesson) {
         return fetch(LONG_LESSON_API_URL
             .replace('CID', courseId)
-            .replace('MID', lesson.module.id), {
+            .replace('MID', moduleId), {
             body: JSON.stringify(lesson),
             headers: {
                 'Content-Type': 'application/json'
@@ -48,10 +48,10 @@ class LessonService {
             })
     }
 
-    findAllLessonsForModule(module) {
+    findAllLessonsForModule(courseId, moduleId) {
         return fetch(LONG_LESSON_API_URL
-            .replace('CID', module.course.id)
-            .replace('MID', module.id))
+            .replace('CID', courseId)
+            .replace('MID', moduleId))
             .then(function (response) {
                 return response.json();
             });
