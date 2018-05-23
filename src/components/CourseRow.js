@@ -7,7 +7,6 @@ export default class CourseRow extends React.Component {
         super(props);
         this.courseService = CourseService.instance;
         this.deleteCourse = this.deleteCourse.bind(this);
-        this.updateCourse = this.updateCourse.bind(this);
     }
 
     deleteCourse() {
@@ -15,11 +14,6 @@ export default class CourseRow extends React.Component {
             this.courseService.deleteCourse(this.props.course.id)
                 .then(this.props.handler);
         }
-    }
-
-    updateCourse() {
-        this.courseService.updateCourse(this.props.course.id, this.props.course)
-            .then(this.props.handler);
     }
 
     render() {

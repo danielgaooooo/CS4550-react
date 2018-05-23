@@ -11,10 +11,12 @@ export default class CourseEditor
         super(props);
         this.state = {
             courseId: '',
-            courseTitle: ''
+            title: ''
         };
         this.courseService = CourseService.instance;
         this.selectCourse = this.selectCourse.bind(this);
+        this.updateCourse = this.updateCourse.bind(this);
+        this.titleChanged = this.titleChanged.bind(this);
     }
 
     componentDidMount() {
@@ -29,14 +31,49 @@ export default class CourseEditor
     getCourseName() {
         this.courseService.findCourseById(this.props.match.params.courseId)
             .then((course) => {
-                this.setState({courseTitle: course.title})
+                this.setState({title: course.title})
             });
+    }
+
+    titleChanged(event) {
+        this.setState({
+            title: event.target.value,
+        });
+    }
+
+    updateCourse() {
+        this.courseService.updateCourse(this.props.match.params.courseId, this.state)
+            .then(this.props.handler);
     }
 
     render() {
         return (
             <div>
-                <h1>Editing course {this.state.courseId}: {this.state.courseTitle}</h1>
+                <div className="row">
+                    <div className="col-6">
+                        <h1>Editing course {this.state.courseId}</h1>
+                    </div>
+                    <div className="col-6">
+                        <h1>Current name:</h1>
+                        <tbody>
+                        <tr>
+                            <td>
+                                <input onChange={this.titleChanged}
+                                       className="form-control"
+                                       id="titleFld"
+                                       value={this.state.title}/>
+                            </td>
+                            <td>
+                                <button className="btn btn-primary"
+                                        onClick={this.updateCourse}>
+                                    <i className="fa fa-check">
+
+                                    </i></button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </div>
+                </div>
                 <Link to={`/courses`}>
                     <h6>Back to course list</h6>
                 </Link>

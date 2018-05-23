@@ -18,7 +18,15 @@ export default class LessonTabs
         this.titleChanged = this.titleChanged.bind(this);
         this.createLesson = this.createLesson.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
+
+        this.moduleChanged = this.moduleChanged.bind(this);
+        // this.lessonChanged = this.lessonChanged.bind(this);
     }
+
+    moduleChanged = (moduleId) => {
+        this.setState({moduleId: moduleId});
+        this.findAllLessons();
+    };
 
     findAllLessons() {
         this.lessonService.findAllLessonsForModule(this.props.match.params.courseId,
@@ -29,12 +37,17 @@ export default class LessonTabs
     }
 
     componentDidMount() {
-        this.findAllLessons();
+        this.moduleChanged(this.props.moduleId)
     }
 
-    componentDidUpdate() {
-        this.findAllLessons();
+    componentWillReceiveProps(newProps) {
+        console.log(newProps);
+        this.moduleChanged(newProps.match.params.moduleId)
     }
+
+    // componentDidUpdate() {
+    //     this.findAllLessons();
+    // }
 
     titleChanged(event) {
         this.setState({
@@ -54,20 +67,21 @@ export default class LessonTabs
         this.findAllLessons();
     }
 
+
     renderLessonTabs() {
         var handleDelete = this.handleDelete;
+        var handleUpdate = this.handleUpdate;
         let courses = null;
         if (this.state) {
             courses = this.state.lessons.map(
                 function (lesson) {
                     return <LessonRow key={lesson.id}
-                                      lesson={lesson} handler={handleDelete}/>
+                                      lesson={lesson} handler={handleDelete}
+                                      handleUpdate={handleUpdate}/>
                 }
             );
         }
-        return (
-            courses
-        )
+        return (courses)
     }
 
     render() {
@@ -85,7 +99,7 @@ export default class LessonTabs
                                     placeholder="New Lesson"
                                     className="form-control"/>
                                 <span>
-                                    <button className="btn-block" onClick={this.createLesson}>
+                                    <button className="btn-block btn-primary" onClick={this.createLesson}>
                                         <i className="fa fa-plus"></i>
                                     </button>
                                 </span>
