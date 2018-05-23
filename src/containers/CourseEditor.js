@@ -74,9 +74,6 @@ export default class CourseEditor
                         </tbody>
                     </div>
                 </div>
-                <Link to={`/courses`}>
-                    <h6>Back to course list</h6>
-                </Link>
                 <div className="row">
                     <div className="col-4">
                         <ModuleList courseId={this.state.courseId}/>

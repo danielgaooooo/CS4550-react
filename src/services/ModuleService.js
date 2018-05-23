@@ -1,7 +1,7 @@
 const MODULE_API_URL =
-    '/api/course/CID/module';
+    'http://localhost:8080/api/course/CID/module';
 const MODULE_API_URL_SHORT =
-    '/api/module';
+    'http://localhost:8080/api/module';
 
 let _singleton = Symbol();
 export default class ModuleService {
