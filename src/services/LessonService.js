@@ -1,6 +1,6 @@
 let _singleton = Symbol();
-const LESSON_API_URL = 'http://localhost:8080/api/lesson';
-const LONG_LESSON_API_URL = 'http://localhost:8080/api/course/CID/module/MID/lesson';
+const LESSON_API_URL = '/api/lesson';
+const LONG_LESSON_API_URL = '/api/course/CID/module/MID/lesson';
 
 class LessonService {
     constructor(singletonToken) {

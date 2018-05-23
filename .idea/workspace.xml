@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="516394a6-3e44-421b-89e4-98dda0c29704" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/containers/HomePage.js" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/containers/CourseEditor.js" afterPath="$PROJECT_DIR$/src/containers/CourseEditor.js" />
-      <change beforePath="$PROJECT_DIR$/src/containers/CourseManager.js" afterPath="$PROJECT_DIR$/src/containers/CourseManager.js" />
-      <change beforePath="$PROJECT_DIR$/src/services/CourseService.js" afterPath="$PROJECT_DIR$/src/services/CourseService.js" />
-      <change beforePath="$PROJECT_DIR$/src/services/LessonService.js" afterPath="$PROJECT_DIR$/src/services/LessonService.js" />
-      <change beforePath="$PROJECT_DIR$/src/services/ModuleService.js" afterPath="$PROJECT_DIR$/src/services/ModuleService.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -85,8 +79,8 @@
       <file leaf-file-name="CourseEditor.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/containers/CourseEditor.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="344">
-              <caret line="75" column="22" lean-forward="false" selection-start-line="75" selection-start-column="22" selection-end-line="75" selection-end-column="22" />
+            <state relative-caret-position="224">
+              <caret line="67" column="68" lean-forward="true" selection-start-line="67" selection-start-column="68" selection-end-line="67" selection-end-column="68" />
               <folding>
                 <element signature="e#0#25#0" expanded="true" />
               </folding>
@@ -298,12 +292,12 @@
       <option name="presentableId" value="Default" />
       <updated>1526324623620</updated>
       <workItem from="1526324624900" duration="498000" />
-      <workItem from="1526407894276" duration="52831000" />
+      <workItem from="1526407894276" duration="52967000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="53329000" />
+    <option name="totallyTimeSpent" value="53465000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="311" y="23" width="1129" height="823" extended-state="0" />
@@ -659,8 +653,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/containers/CourseEditor.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="344">
-          <caret line="75" column="22" lean-forward="false" selection-start-line="75" selection-start-column="22" selection-end-line="75" selection-end-column="22" />
+        <state relative-caret-position="224">
+          <caret line="67" column="68" lean-forward="true" selection-start-line="67" selection-start-column="68" selection-end-line="67" selection-end-column="68" />
           <folding>
             <element signature="e#0#25#0" expanded="true" />
           </folding>
