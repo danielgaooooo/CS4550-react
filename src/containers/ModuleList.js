@@ -45,9 +45,13 @@ export default class ModuleList extends Component {
     }
 
     createModule() {
-        this.moduleService.createModule(this.props.courseId, this.state.module)
-            .then(() => this.findAllModulesForCourse(this.props.courseId));
-        this.renderListOfModules();
+        if (this.state.module.title !== "") {
+            this.moduleService.createModule(this.props.courseId, this.state.module)
+                .then(() => this.findAllModulesForCourse(this.props.courseId));
+            this.renderListOfModules();
+        } else {
+            window.alert('Please give your module a name.');
+        }
     }
 
     titleChanged(event) {

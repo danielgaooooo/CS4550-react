@@ -12,14 +12,24 @@ export default class CourseList extends React.Component {
     }
 
     createCourse() {
-        this.courseService.createCourse(this.state.course)
-            .then(() => this.findAllCourses());
+        if (this.state.course.title !== "") {
+            this.courseService.createCourse(this.state.course)
+                .then(() => this.findAllCourses());
+        } else {
+            window.alert('Please give your course a name.');
+        }
     }
 
     findAllCourses() {
         this.courseService.findAllCourses()
             .then((courses) => {
                 this.setState({courses: courses});
+                this.setState({
+                    course: {
+                        title: '',
+                        owner: ''
+                    }
+                });
             })
     }
 
@@ -33,7 +43,7 @@ export default class CourseList extends React.Component {
                 title: event.target.value,
                 owner: "Daniel Gao"
             }
-        })
+        });
     }
 
     handleDelete() {

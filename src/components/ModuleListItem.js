@@ -7,6 +7,7 @@ export default class ModuleListItem extends React.Component {
         super(props);
         this.moduleService = ModuleService.instance;
         this.deleteModule = this.deleteModule.bind(this);
+        this.updateModule = this.updateModule.bind(this);
     }
 
     deleteModule() {
@@ -15,6 +16,12 @@ export default class ModuleListItem extends React.Component {
                 .then(this.props.handler);
         }
     }
+
+    updateModule() {
+        this.moduleService.updateModule(this.props.module.id, this.props.module)
+            .then(this.props.handler);
+    }
+
 
     render() {
         return (
@@ -26,7 +33,7 @@ export default class ModuleListItem extends React.Component {
                     <button onClick={this.deleteModule}>
                         <i className="fa fa-trash"></i>
                     </button>
-                    <button>
+                    <button onClick={this.updateModule}>
                         <i className="fa fa-pencil"></i>
                     </button>
                 </span>

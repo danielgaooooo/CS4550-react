@@ -6,6 +6,7 @@ export default class LessonRow extends React.Component {
         super(props);
         this.lessonService = LessonService.instance;
         this.deleteLesson = this.deleteLesson.bind(this);
+        this.updateLesson = this.updateLesson.bind(this);
     }
 
     deleteLesson() {
@@ -13,6 +14,11 @@ export default class LessonRow extends React.Component {
             this.lessonService.deleteLesson(this.props.lesson.id)
                 .then(this.props.handler);
         }
+    }
+
+    updateLesson() {
+        this.lessonService.updateLesson(this.props.lesson.id, this.props.lesson)
+            .then(this.props.handler);
     }
 
     render() {
@@ -28,7 +34,7 @@ export default class LessonRow extends React.Component {
                             <button onClick={this.deleteLesson}>
                                 <i className="fa fa-trash"></i>
                             </button>
-                            <button>
+                            <button onClick={this.updateLesson}>
                                 <i className="fa fa-pencil"></i>
                             </button>
                         </span>

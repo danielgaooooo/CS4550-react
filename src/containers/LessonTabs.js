@@ -27,19 +27,14 @@ export default class LessonTabs
                 this.setState({lessons: lessons});
             });
     }
-    //
-    // componentDidMount() {
-    //     this.findAllLessons();
-    // }
-    //
-    // setCourseId(courseId) {
-    //     this.setState({courseId: courseId});
-    // }
-    //
-    // componentWillReceiveProps(newProps) {
-    //     this.setCourseId(newProps.courseId);
-    //     this.findAllLessons();
-    // }
+
+    componentDidMount() {
+        this.findAllLessons();
+    }
+
+    componentDidUpdate() {
+        this.findAllLessons();
+    }
 
     titleChanged(event) {
         this.setState({
@@ -65,7 +60,8 @@ export default class LessonTabs
         if (this.state) {
             courses = this.state.lessons.map(
                 function (lesson) {
-                    return <LessonRow key={lesson.id} lesson={lesson} handler={handleDelete}/>
+                    return <LessonRow key={lesson.id}
+                                      lesson={lesson} handler={handleDelete}/>
                 }
             );
         }

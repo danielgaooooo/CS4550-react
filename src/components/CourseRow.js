@@ -7,6 +7,7 @@ export default class CourseRow extends React.Component {
         super(props);
         this.courseService = CourseService.instance;
         this.deleteCourse = this.deleteCourse.bind(this);
+        this.updateCourse = this.updateCourse.bind(this);
     }
 
     deleteCourse() {
@@ -16,11 +17,14 @@ export default class CourseRow extends React.Component {
         }
     }
 
+    updateCourse() {
+        this.courseService.updateCourse(this.props.course.id, this.props.course)
+            .then(this.props.handler);
+    }
+
     render() {
         var date = this.props.course.modified.substr(0, 16);
         var dateDay = parseInt(date.substr(8, 2));
-        var dateMonth = parseInt(date.substr(5, 2));
-        var dateYear = parseInt(date.substr(0, 4));
         var dateHour = parseInt(date.substr(11, 13)) - 4;
         if (dateHour < dateHour % 24) {
             dateDay -= 1;
@@ -39,7 +43,7 @@ export default class CourseRow extends React.Component {
                         <i className="fa fa-trash"></i>
                     </button>
                     <Link to={`/course/${this.props.course.id}`}>
-                    <button>
+                    <button onClick={this.updateCourse}>
                         <i className="fa fa-pencil"></i>
                     </button>
                     </Link>
