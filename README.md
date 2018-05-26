@@ -1,3 +1,10 @@
+# CS4550-react
+Homework 2
+
+
+This repository serves as the front end for my Spring Boot application, at: <br>
+https://github.com/danielgaooooo/CS4550-hw1
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
