@@ -38,6 +38,16 @@ const widgetReducer = (state = {widgets: [], preview: false}, action) => {
                 })
             };
 
+        case constants.LIST_TYPE_CHANGED:
+            return {
+                widgets: state.widgets.map(widget => {
+                    if (widget.id === action.id) {
+                        widget.listType = action.listType;
+                    }
+                    return Object.assign({}, widget)
+                })
+            };
+
         case constants.SELECT_WIDGET_TYPE:
             newState = {
                 widgets: state.widgets.filter((widget) => {
@@ -83,7 +93,8 @@ const widgetReducer = (state = {widgets: [], preview: false}, action) => {
                         text: '',
                         widgetType: 'Heading',
                         size: '1',
-                        name: ''
+                        name: '',
+                        listType: 'Ordered'
                     }
                 ]
             };

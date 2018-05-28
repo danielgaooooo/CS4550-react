@@ -15,6 +15,8 @@ const dispatchToPropsMapper = dispatch => ({
         actions.headingSizeChanged(dispatch, widgetId, newSize),
     nameChanged: (widgetId, newName) =>
         actions.nameChanged(dispatch, widgetId, newName),
+    listTypeChanged: (widgetId, newListType) =>
+        actions.listTypeChanged(dispatch, widgetId, newListType)
 });
 
 // HEADING STUFF ==================================================================================
@@ -83,18 +85,12 @@ const Paragraph = ({preview, widget, textChanged, nameChanged}) => {
 
 const ParagraphContainer = connect(stateToPropsMapper, dispatchToPropsMapper)(Paragraph);
 
-
-// IMAGE STUFF ====================================================================================
-const Image = () => (
-    <h4>Image Widget</h4>
-);
-
-const ImageContainer = connect(stateToPropsMapper, dispatchToPropsMapper)(Image);
-
 // LIST STUFF =====================================================================================
-const List = (preview, widget, textChanged, nameChanged) => {
+const List = ({preview, widget, textChanged, nameChanged, listTypeChanged}) => {
     let inputElem;
     let nameElem;
+    let orderedElem;
+    let temp = "Enter one \n list item \n per row";
     return (
         <div>
             <div hidden={preview}>
@@ -102,21 +98,40 @@ const List = (preview, widget, textChanged, nameChanged) => {
                 <textarea onChange={() => textChanged(widget.id, inputElem.value)}
                           value={widget.text}
                           className="form-control"
-                          placeholder="List items"
+                          placeholder={temp}
                           ref={node => inputElem = node}/>
                 <input onChange={() => nameChanged(widget.id, nameElem.value)}
                        value={widget.name}
                        className="form-control"
                        placeholder="Widget name"
                        ref={node => nameElem = node}/>
+                <select onChange={() => listTypeChanged(widget.id, orderedElem.value)}
+                        value={widget.listType}
+                        className="form-control"
+                        ref={node => orderedElem = node}>
+                    <option value="Ordered">Ordered</option>
+                    <option value="Unordered">Unordered</option>
+                </select>
                 <h5 style={{paddingTop: 10}}>Preview</h5>
             </div>
-            {widget.text}
+            <ul hidden={widget.listType !== 'Unordered' || widget.text.split("\n") <= 1}>
+                {widget.text.split("\n").map(item => ( <li key={item}>{item}</li>))}
+            </ul>
+            <ol hidden={widget.listType !== 'Ordered' || widget.text.split("\n") <= 1}>
+                {widget.text.split("\n").map(item => ( <li key={item}>{item}</li>))}
+            </ol>
         </div>
     )
 };
 
 const ListContainer = connect(stateToPropsMapper, dispatchToPropsMapper)(List);
+
+// IMAGE STUFF ====================================================================================
+const Image = () => (
+    <h4>Image Widget</h4>
+);
+
+const ImageContainer = connect(stateToPropsMapper, dispatchToPropsMapper)(Image);
 
 // LINK STUFF =====================================================================================
 const Link = () => (

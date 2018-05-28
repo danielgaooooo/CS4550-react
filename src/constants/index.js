@@ -8,3 +8,4 @@ export const SELECT_WIDGET_TYPE = 'SELECT_WIDGET_TYPE';
 export const TEXT_CHANGED = 'TEXT_CHANGED';
 export const PREVIEW = 'PREVIEW';
 export const NAME_CHANGED = 'NAME_CHANGED';
+export const LIST_TYPE_CHANGED = 'LIST_TYPE_CHANGED';
