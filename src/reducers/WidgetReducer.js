@@ -48,6 +48,26 @@ const widgetReducer = (state = {widgets: [], preview: false}, action) => {
                 })
             };
 
+        case constants.SRC_CHANGED:
+            return {
+                widgets: state.widgets.map(widget => {
+                    if (widget.id === action.id) {
+                        widget.src = action.src;
+                    }
+                    return Object.assign({}, widget)
+                })
+            };
+
+        case constants.URL_CHANGED:
+            return {
+                widgets: state.widgets.map(widget => {
+                    if (widget.id === action.id) {
+                        widget.href = action.href;
+                    }
+                     return Object.assign({}, widget)
+                })
+            };
+
         case constants.SELECT_WIDGET_TYPE:
             newState = {
                 widgets: state.widgets.filter((widget) => {
@@ -94,7 +114,9 @@ const widgetReducer = (state = {widgets: [], preview: false}, action) => {
                         widgetType: 'Heading',
                         size: '1',
                         name: '',
-                        listType: 'Ordered'
+                        listType: 'Ordered',
+                        src: '',
+                        href: ''
                     }
                 ]
             };

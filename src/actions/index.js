@@ -32,6 +32,22 @@ export const listTypeChanged = (dispatch, widgetId, newListType) => (
     })
 );
 
+export const srcChanged = (dispatch, widgetId, newSrc) => (
+    dispatch({
+        type: constants.SRC_CHANGED,
+        id: widgetId,
+        src: newSrc
+    })
+);
+
+export const urlChanged = (dispatch, widgetId, newHref) => (
+    dispatch({
+        type: constants.URL_CHANGED,
+        id: widgetId,
+        href: newHref
+    })
+);
+
 export const findAllWidgets = dispatch => {
     fetch('http://localhost:8080/api/widget')
         .then(response => (response.json()))

@@ -2,10 +2,11 @@ export const SAVE = 'SAVE';
 export const FIND_ALL_WIDGETS = 'FIND_ALL_WIDGETS';
 export const DELETE_WIDGET = 'DELETE_WIDGET';
 export const ADD_WIDGET = 'ADD_WIDGET';
-
 export const HEADING_SIZE_CHANGED = 'HEADING_SIZE_CHANGED';
 export const SELECT_WIDGET_TYPE = 'SELECT_WIDGET_TYPE';
 export const TEXT_CHANGED = 'TEXT_CHANGED';
 export const PREVIEW = 'PREVIEW';
 export const NAME_CHANGED = 'NAME_CHANGED';
 export const LIST_TYPE_CHANGED = 'LIST_TYPE_CHANGED';
+export const SRC_CHANGED = 'SRC_CHANGED';
+export const URL_CHANGED = 'URL_CHANGED';

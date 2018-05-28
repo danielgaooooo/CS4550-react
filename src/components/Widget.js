@@ -4,6 +4,7 @@ import {DELETE_WIDGET} from "../constants"
 import * as actions from '../actions'
 
 
+// MAPPERS FOR ALL WIDGET TYPES ===================================================================
 const stateToPropsMapper = state => ({
     preview: state.preview
 });
@@ -16,7 +17,11 @@ const dispatchToPropsMapper = dispatch => ({
     nameChanged: (widgetId, newName) =>
         actions.nameChanged(dispatch, widgetId, newName),
     listTypeChanged: (widgetId, newListType) =>
-        actions.listTypeChanged(dispatch, widgetId, newListType)
+        actions.listTypeChanged(dispatch, widgetId, newListType),
+    srcChanged: (widgetId, newSrc) =>
+        actions.srcChanged(dispatch, widgetId, newSrc),
+    urlChanged: (widgetId, newUrl) =>
+        actions.urlChanged(dispatch, widgetId, newUrl)
 });
 
 // HEADING STUFF ==================================================================================
@@ -115,10 +120,10 @@ const List = ({preview, widget, textChanged, nameChanged, listTypeChanged}) => {
                 <h5 style={{paddingTop: 10}}>Preview</h5>
             </div>
             <ul hidden={widget.listType !== 'Unordered' || widget.text.split("\n") <= 1}>
-                {widget.text.split("\n").map(item => ( <li key={item}>{item}</li>))}
+                {widget.text.split("\n").map(item => (<li key={item}>{item}</li>))}
             </ul>
             <ol hidden={widget.listType !== 'Ordered' || widget.text.split("\n") <= 1}>
-                {widget.text.split("\n").map(item => ( <li key={item}>{item}</li>))}
+                {widget.text.split("\n").map(item => (<li key={item}>{item}</li>))}
             </ol>
         </div>
     )
@@ -127,16 +132,66 @@ const List = ({preview, widget, textChanged, nameChanged, listTypeChanged}) => {
 const ListContainer = connect(stateToPropsMapper, dispatchToPropsMapper)(List);
 
 // IMAGE STUFF ====================================================================================
-const Image = () => (
-    <h4>Image Widget</h4>
-);
+const Image = ({widget, preview, srcChanged, nameChanged}) => {
+    let inputElem;
+    let nameElem;
+    return (
+        <div>
+            <div hidden={preview}>
+                <h4>Image Widget</h4>
+                <textarea onChange={() => srcChanged(widget.id, inputElem.value)}
+                          value={widget.src}
+                          className="form-control"
+                          placeholder="Image source URL"
+                          ref={node => inputElem = node}/>
+                <input onChange={() => nameChanged(widget.id, nameElem.value)}
+                       value={widget.name}
+                       className="form-control"
+                       placeholder="Widget name"
+                       ref={node => nameElem = node}/>
+                <h5 style={{paddingTop: 10}}>Preview</h5>
+            </div>
+            <div id="image-div" style={{overflow: `hidden`}}>
+                <img src={widget.src}/>
+            </div>
+        </div>
+    );
+};
 
 const ImageContainer = connect(stateToPropsMapper, dispatchToPropsMapper)(Image);
 
 // LINK STUFF =====================================================================================
-const Link = () => (
-    <h4>Link Widget</h4>
-);
+const Link = ({preview, widget, urlChanged, nameChanged, textChanged}) => {
+    let urlElem;
+    let inputElem;
+    let nameElem;
+    return (
+        <div>
+            <div hidden={preview}>
+                <h4>Link Widget</h4>
+                <textarea onChange={() => urlChanged(widget.id, urlElem.value)}
+                          value={widget.href}
+                          className="form-control"
+                          placeholder="Link URL (include full address, including http)"
+                          ref={node => urlElem = node}/>
+                <textarea onChange={() => textChanged(widget.id, inputElem.value)}
+                          value={widget.text}
+                          className="form-control"
+                          placeholder="Link text"
+                          ref={node => inputElem = node}/>
+                <input onChange={() => nameChanged(widget.id, nameElem.value)}
+                       value={widget.name}
+                       className="form-control"
+                       placeholder="Widget name"
+                       ref={node => nameElem = node}/>
+                <h5 style={{paddingTop: 10}}>Preview</h5>
+            </div>
+            <div id="image-div" style={{overflow: `hidden`}}>
+                <a href={widget.href}>{widget.text}</a>
+            </div>
+        </div>
+    );
+};
 
 const LinkContainer = connect(stateToPropsMapper, dispatchToPropsMapper)(Link);
 
