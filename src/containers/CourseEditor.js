@@ -75,10 +75,10 @@ export default class CourseEditor
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-4">
+                    <div className="col-2">
                         <ModuleList courseId={this.state.courseId}/>
                     </div>
-                    <div className="col-8">
+                    <div className="col-10">
                         <Route path="/course/:courseId/module/:moduleId"
                                component={LessonTabs}>
                         </Route>
