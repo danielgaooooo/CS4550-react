@@ -67,8 +67,10 @@ export default class CourseList extends React.Component {
 
     render() {
         return (
-            <div className="card-deck">
-                <h1>Course Manager</h1>
+            <div>
+                <div className="card-header">
+                    <h1>Course Manager</h1>
+                </div>
                 <table className="table">
                     <thead>
                     <tr>

@@ -8,7 +8,7 @@ const widgetReducer = (state = {widgets: [], preview: false}, action) => {
             newState.preview = !state.preview;
             return newState;
 
-        case constants.HEADING_TEXT_CHANGED:
+        case constants.TEXT_CHANGED:
             return {
                 widgets: state.widgets.map(widget => {
                     if (widget.id === action.id) {
@@ -28,8 +28,17 @@ const widgetReducer = (state = {widgets: [], preview: false}, action) => {
                 })
             };
 
+        case constants.NAME_CHANGED:
+            return {
+                widgets: state.widgets.map(widget => {
+                    if (widget.id === action.id) {
+                        widget.name = action.name;
+                    }
+                    return Object.assign({}, widget)
+                })
+            };
+
         case constants.SELECT_WIDGET_TYPE:
-            console.log(action);
             newState = {
                 widgets: state.widgets.filter((widget) => {
                     if (widget.id === action.id) {
@@ -38,7 +47,7 @@ const widgetReducer = (state = {widgets: [], preview: false}, action) => {
                     return true;
                 })
             };
-            return JSON.parse(JSON.stringify(newState))
+            return JSON.parse(JSON.stringify(newState));
 
         case constants.SAVE:
             fetch('http://localhost:8080/api/widget/save', {
@@ -51,26 +60,30 @@ const widgetReducer = (state = {widgets: [], preview: false}, action) => {
             return state;
 
         case constants.FIND_ALL_WIDGETS:
-            newState = Object.assign({}, state)
-            newState.widgets = action.widgets
+            newState = Object.assign({}, state);
+            newState.widgets = action.widgets;
             return newState;
 
         case constants.DELETE_WIDGET:
-            return {
-                widgets: state.widgets.filter(widget => (
-                    widget.id !== action.id
-                ))
-            };
-
+            if (window.confirm("Are you sure you want to delete this widget?")) {
+                return {
+                    widgets: state.widgets.filter(widget => (
+                        widget.id !== action.id
+                    ))
+                };
+            } else {
+                return state;
+            }
         case constants.ADD_WIDGET:
             return {
                 widgets: [
                     ...state.widgets,
                     {
                         id: state.widgets.length + 1,
-                        text: 'New Widget',
-                        widgetType: 'Paragraph',
-                        size: '2'
+                        text: '',
+                        widgetType: 'Heading',
+                        size: '1',
+                        name: ''
                     }
                 ]
             };

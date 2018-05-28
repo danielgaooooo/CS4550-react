@@ -50,40 +50,30 @@ export default class CourseEditor
     render() {
         return (
             <div>
-                <div className="row">
-                    <div className="col-6">
-                        <h1>Editing course {this.state.courseId}</h1>
-                    </div>
-                    <div className="col-6">
-                        <h1>Current name:</h1>
-                        <tbody>
-                        <tr>
-                            <td>
-                                <input onChange={this.titleChanged}
-                                       className="form-control"
-                                       id="titleFld"
-                                       value={this.state.title}/>
-                            </td>
-                            <td>
-                                <button className="btn btn-primary"
-                                        onClick={this.updateCourse}>
-                                    <i className="fa fa-check">
-
-                                    </i></button>
-                            </td>
-                        </tr>
-                        </tbody>
+                <div className="card-header">
+                    <h1>Course Editor</h1>
+                    <div className="row" style={{paddingLeft: 15}}>
+                        <input onChange={this.titleChanged}
+                               className="form-control"
+                               id="titleFld"
+                               style={{width: 200}}
+                               value={this.state.title}/>
+                        <button className="btn btn-outline-secondary"
+                                onClick={this.updateCourse}>
+                            <i className="fa fa-check">
+                            </i>
+                        </button>
                     </div>
                 </div>
-                <div className="row">
-                    <div className="col-3">
+                <div className="row" style={{paddingTop: 20}}>
+                    <div className="col-4">
                         <ModuleList courseId={this.state.courseId}/>
                     </div>
-                    <div className="col-9">
+                    <div className="col-8">
                         <Route path="/course/:courseId/module/:moduleId"
                                component={LessonTabs}>
                         </Route>
-                        <Route path="course/:courseId/module/:moduleId/lesson/:lessonId"
+                        <Route path="/course/:courseId/module/:moduleId/lesson/:lessonId"
                                component={App}>
                         </Route>
                     </div>

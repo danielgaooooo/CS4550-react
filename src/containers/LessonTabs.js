@@ -8,6 +8,7 @@ export default class LessonTabs
     constructor(props) {
         super(props);
         this.state = {
+            editing: false,
             courseId: '',
             moduleId: '',
             lesson: {title: ''},
@@ -19,7 +20,18 @@ export default class LessonTabs
         this.createLesson = this.createLesson.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
         this.moduleChanged = this.moduleChanged.bind(this);
+        this.confirm = this.confirm.bind(this);
+        this.edit = this.edit.bind(this);
     }
+
+    confirm = () => {
+        this.setState({editing: false});
+        this.createLesson();
+    };
+
+    edit = () => {
+        this.setState({editing: true})
+    };
 
     moduleChanged = (moduleId) => {
         this.setState({moduleId: moduleId}, () => this.findAllLessons());
@@ -83,10 +95,13 @@ export default class LessonTabs
     render() {
         return (
             <div>
-                <h3>Lessons</h3>
                 <ul className="nav nav-tabs">
                     {this.renderLessonTabs()}
-                    <li className="nav-item, row" style={{paddingLeft: 15}}>
+                    <button  hidden={this.state.editing} onClick={this.edit}
+                        className="btn btn-outline-secondary btn-group-vertical">
+                        <i className="fa fa-plus"></i>
+                    </button>
+                    <li hidden={!this.state.editing} className="nav-item, row" style={{paddingLeft: 15}}>
                         <div className="nav-link active" style={{padding: 0}}>
                             <div className="list-group-item">
                                 <input
@@ -96,10 +111,10 @@ export default class LessonTabs
                                     className="form-control"
                                     style={{width: 120}}/>
                                 <span>
-                                    <button className="btn-block btn-primary"
-                                            onClick={this.createLesson}
+                                    <button className="btn-block btn-outline-secondary"
+                                            onClick={this.confirm}
                                             style={{width: 120}}>
-                                        <i className="fa fa-plus"></i>
+                                        <i className="fa fa-check"></i>
                                     </button>
                                 </span>
                             </div>

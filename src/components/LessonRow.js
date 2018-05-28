@@ -48,41 +48,48 @@ export default class LessonRow extends React.Component {
 
     render() {
         return (
-            <Link to={`/course/${this.props.courseId}/module/${this.props.moduleId}/lesson/${this.props.lesson.id}`}>
-                <div className="btn-group-vertical">
-                    <div hidden={this.state.editing}>
-                        <li className="nav-item, row" style={{paddingLeft: 15, paddingRight: 15}}>
-                            <div className="nav-link" style={{
-                                alignItems: "center",
-                                justifyContent: "center", display: "flex", padding: 0
-                            }}>
-                                <div className="list-group-item">
-                                    <a style={{paddingRight: 10}}>
-                                        {this.props.lesson.title}
-                                    </a>
-                                    <span>
-                            <button onClick={this.deleteLesson}>
-                                <i className="fa fa-trash"></i>
-                            </button>
-                            <button onClick={this.edit}>
-                                <i className="fa fa-pencil"></i>
-                            </button>
-                        </span>
-                                </div>
+
+            <div className="btn-group-vertical">
+                <div hidden={this.state.editing}>
+                    <li className="nav-item, row" style={{paddingLeft: 15, paddingRight: 15}}>
+                        <div className="nav-link" style={{
+                            alignItems: "center",
+                            justifyContent: "center", display: "flex", padding: 0
+                        }}>
+                            <div className="list-group-item">
+                                <Link
+                                    to={`/course/${this.props.courseId}/module/${this.props.moduleId}/lesson/${this.props.lesson.id}`}
+                                    style={{paddingRight: 10}}>
+                                    {this.props.lesson.title}
+                                </Link>
+                                <span>
+                                        <button className="btn"
+                                                style={{width: 30, padding: 0}}
+                                                onClick={this.deleteLesson}>
+                                            <i className="fa fa-trash"></i>
+                                        </button>
+                                        <button className="btn"
+                                                style={{width: 30, padding: 0}}
+                                                onClick={this.edit}>
+                                            <i className="fa fa-pencil"></i>
+                                        </button>
+                                </span>
                             </div>
-                        </li>
-                    </div>
-                    <div hidden={!this.state.editing}>
-                        <input onChange={this.titleChanged}
-                               className="form-control"
-                               id="titleFld"
-                               placeholder={this.props.lesson.title}/>
-                        <button onClick={this.confirm}>
-                            <i className="fa fa-check"></i>
-                        </button>
-                    </div>
+                        </div>
+                    </li>
                 </div>
-            </Link>
+                <div hidden={!this.state.editing}>
+                    <input onChange={this.titleChanged}
+                           className="form-control"
+                           id="titleFld"
+                           placeholder={this.props.lesson.title}/>
+                    <button style={{width: 30, padding: 0}}
+                            className="btn"
+                            onClick={this.confirm}>
+                        <i className="fa fa-check"></i>
+                    </button>
+                </div>
+            </div>
         )
     }
 }

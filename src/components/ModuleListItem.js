@@ -54,10 +54,14 @@ export default class ModuleListItem extends React.Component {
                         {this.props.module.title}
                     </Link>
                     <span className="float-right">
-                        <button onClick={this.deleteModule}>
+                        <button className="btn"
+                                style={{paddingRight: 5, paddingLeft: 5}}
+                                onClick={this.deleteModule}>
                             <i className="fa fa-trash"></i>
                         </button>
-                        <button onClick={this.edit}>
+                        <button className="btn"
+                                style={{paddingRight: 5, paddingLeft: 5}}
+                                onClick={this.edit}>
                             <i className="fa fa-pencil"></i>
                         </button>
                     </span>
@@ -67,7 +71,7 @@ export default class ModuleListItem extends React.Component {
                            className="form-control"
                            id="titleFld"
                            placeholder={this.props.module.title}/>
-                    <button onClick={this.confirm}>
+                    <button className="btn" onClick={this.confirm}>
                         <i className="fa fa-check"></i>
                     </button>
                 </div>
