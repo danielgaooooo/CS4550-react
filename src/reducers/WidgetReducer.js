@@ -1,4 +1,4 @@
-import * as constants from "../constants/index"
+import * as constants from "../constants"
 
 const widgetReducer = (state = {widgets: [], preview: false}, action) => {
     let newState;

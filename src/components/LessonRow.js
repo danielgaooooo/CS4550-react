@@ -1,5 +1,6 @@
 import React from 'react';
 import LessonService from '../services/LessonService';
+import {Link} from 'react-router-dom';
 
 export default class LessonRow extends React.Component {
     constructor(props) {
@@ -21,7 +22,7 @@ export default class LessonRow extends React.Component {
     };
 
     confirm = () => {
-        this.setState({editing: false})
+        this.setState({editing: false});
         this.updateLesson();
     };
 
@@ -47,18 +48,19 @@ export default class LessonRow extends React.Component {
 
     render() {
         return (
-            <div>
-                <div hidden={this.state.editing}>
-                    <li className="nav-item, row" style={{paddingLeft: 15, paddingRight: 15}}>
-                        <div className="nav-link" style={{
-                            alignItems: "center",
-                            justifyContent: "center", display: "flex", padding: 0
-                        }}>
-                            <div className="list-group-item">
-                                <a style={{paddingRight: 10}} href="#">
-                                    {this.props.lesson.title}
-                                </a>
-                                <span>
+            <Link to={`/course/${this.props.courseId}/module/${this.props.moduleId}/lesson/${this.props.lesson.id}`}>
+                <div className="btn-group-vertical">
+                    <div hidden={this.state.editing}>
+                        <li className="nav-item, row" style={{paddingLeft: 15, paddingRight: 15}}>
+                            <div className="nav-link" style={{
+                                alignItems: "center",
+                                justifyContent: "center", display: "flex", padding: 0
+                            }}>
+                                <div className="list-group-item">
+                                    <a style={{paddingRight: 10}}>
+                                        {this.props.lesson.title}
+                                    </a>
+                                    <span>
                             <button onClick={this.deleteLesson}>
                                 <i className="fa fa-trash"></i>
                             </button>
@@ -66,20 +68,21 @@ export default class LessonRow extends React.Component {
                                 <i className="fa fa-pencil"></i>
                             </button>
                         </span>
+                                </div>
                             </div>
-                        </div>
-                    </li>
+                        </li>
+                    </div>
+                    <div hidden={!this.state.editing}>
+                        <input onChange={this.titleChanged}
+                               className="form-control"
+                               id="titleFld"
+                               placeholder={this.props.lesson.title}/>
+                        <button onClick={this.confirm}>
+                            <i className="fa fa-check"></i>
+                        </button>
+                    </div>
                 </div>
-                <div hidden={!this.state.editing}>
-                    <input onChange={this.titleChanged}
-                           className="form-control"
-                           id="titleFld"
-                           placeholder={this.props.lesson.title}/>
-                    <button onClick={this.confirm}>
-                        <i className="fa fa-check"></i>
-                    </button>
-                </div>
-            </div>
+            </Link>
         )
     }
 }

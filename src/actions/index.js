@@ -1,4 +1,4 @@
-import * as constants from "../constants/index"
+import * as constants from "../constants"
 
 export const headingTextChanged = (dispatch, widgetId, newText) => (
     dispatch({

@@ -18,36 +18,29 @@ export default class LessonTabs
         this.titleChanged = this.titleChanged.bind(this);
         this.createLesson = this.createLesson.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
-
         this.moduleChanged = this.moduleChanged.bind(this);
-        // this.lessonChanged = this.lessonChanged.bind(this);
     }
 
     moduleChanged = (moduleId) => {
-        this.setState({moduleId: moduleId});
-        this.findAllLessons();
+        this.setState({moduleId: moduleId}, () => this.findAllLessons());
     };
 
     findAllLessons() {
+
         this.lessonService.findAllLessonsForModule(this.props.match.params.courseId,
-            this.props.match.params.moduleId)
+            this.state.moduleId)
             .then((lessons) => {
                 this.setState({lessons: lessons});
             });
     }
 
     componentDidMount() {
-        this.moduleChanged(this.props.moduleId)
+        this.moduleChanged(this.props.match.params.moduleId);
     }
 
     componentWillReceiveProps(newProps) {
-        console.log(newProps);
         this.moduleChanged(newProps.match.params.moduleId)
     }
-
-    // componentDidUpdate() {
-    //     this.findAllLessons();
-    // }
 
     titleChanged(event) {
         this.setState({
@@ -69,15 +62,18 @@ export default class LessonTabs
 
 
     renderLessonTabs() {
+        var self = this;
+        var state = this.state;
         var handleDelete = this.handleDelete;
-        var handleUpdate = this.handleUpdate;
         let courses = null;
-        if (this.state) {
-            courses = this.state.lessons.map(
+        if (state) {
+            courses = state.lessons.map(
                 function (lesson) {
                     return <LessonRow key={lesson.id}
-                                      lesson={lesson} handler={handleDelete}
-                                      handleUpdate={handleUpdate}/>
+                                      courseId={self.props.match.params.courseId}
+                                      moduleId={state.moduleId}
+                                      lesson={lesson}
+                                      handler={handleDelete}/>
                 }
             );
         }
@@ -97,9 +93,12 @@ export default class LessonTabs
                                     onChange={this.titleChanged}
                                     value={this.state.lesson.title}
                                     placeholder="New Lesson"
-                                    className="form-control"/>
+                                    className="form-control"
+                                    style={{width: 120}}/>
                                 <span>
-                                    <button className="btn-block btn-primary" onClick={this.createLesson}>
+                                    <button className="btn-block btn-primary"
+                                            onClick={this.createLesson}
+                                            style={{width: 120}}>
                                         <i className="fa fa-plus"></i>
                                     </button>
                                 </span>

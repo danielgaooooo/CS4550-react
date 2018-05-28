@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {DELETE_WIDGET} from "../constants/index"
+import {DELETE_WIDGET} from "../constants"
 import * as actions from '../actions'
 
 // HEADING STUFF ==================================================================================

@@ -3,6 +3,7 @@ import ModuleList from './ModuleList'
 import LessonTabs from './LessonTabs'
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 import CourseService from "../services/CourseService";
+import App from './WidgetList';
 
 export default class CourseEditor
     extends React.Component {
@@ -75,12 +76,15 @@ export default class CourseEditor
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-2">
+                    <div className="col-3">
                         <ModuleList courseId={this.state.courseId}/>
                     </div>
-                    <div className="col-10">
+                    <div className="col-9">
                         <Route path="/course/:courseId/module/:moduleId"
                                component={LessonTabs}>
+                        </Route>
+                        <Route path="course/:courseId/module/:moduleId/lesson/:lessonId"
+                               component={App}>
                         </Route>
                     </div>
                 </div>
