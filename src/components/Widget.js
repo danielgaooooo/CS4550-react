@@ -21,7 +21,15 @@ const dispatchToPropsMapper = dispatch => ({
     srcChanged: (widgetId, newSrc) =>
         actions.srcChanged(dispatch, widgetId, newSrc),
     urlChanged: (widgetId, newUrl) =>
-        actions.urlChanged(dispatch, widgetId, newUrl)
+        actions.urlChanged(dispatch, widgetId, newUrl),
+    moveUp: (widgetId) =>
+        actions.moveUp(dispatch, widgetId),
+    moveDown: (widgetId) =>
+        actions.moveDown(dispatch, widgetId),
+    deleteWidget: (widgetId) =>
+        actions.deleteWidget(dispatch, widgetId),
+    selectWidget: (widgetId, widgetType) =>
+        actions.selectWidget(dispatch, widgetId, widgetType)
 });
 
 // HEADING STUFF ==================================================================================
@@ -196,27 +204,21 @@ const Link = ({preview, widget, urlChanged, nameChanged, textChanged}) => {
 const LinkContainer = connect(stateToPropsMapper, dispatchToPropsMapper)(Link);
 
 // WIDGET STUFF ===================================================================================
-const Widget = ({widget, preview, dispatch}) => {
+const Widget = ({widget, preview, deleteWidget, moveUp, moveDown, selectWidget}) => {
     let selectElement;
     return (
         <li className="list-group-item">
             <div hidden={preview}>
                 <button className="btn float-right"
                         title="Delete"
-                        onClick={e => (
-                            dispatch({type: DELETE_WIDGET, id: widget.id})
-                        )}>
+                        onClick={() => deleteWidget(widget.id)}>
                     <i className="fa fa-trash"></i>
                 </button>
                 <div className="float-right" style={{paddingTop: 5}}>
                     <select
                         value={widget.widgetType}
-                        onChange={e =>
-                            dispatch({
-                                type: 'SELECT_WIDGET_TYPE',
-                                id: widget.id,
-                                widgetType: selectElement.value
-                            })} ref={node => selectElement = node}>
+                        onChange={() => selectWidget(widget.id, selectElement.value)}
+                        ref={node => selectElement = node}>
                         <option>Heading</option>
                         <option>Paragraph</option>
                         <option>List</option>
@@ -225,10 +227,14 @@ const Widget = ({widget, preview, dispatch}) => {
                     </select>
                 </div>
                 <button className="btn float-right"
+                        hidden={widget.precedence >= widget.maxPrecedence}
+                        onClick={() => moveDown(widget.id)}
                         title="Move down">
                     <i className="fa fa-arrow-down"></i>
                 </button>
                 <button className="btn float-right"
+                        hidden={widget.precedence <= 1}
+                        onClick={() => moveUp(widget.id)}
                         title="Move up">
                     <i className="fa fa-arrow-up"></i>
                 </button>
@@ -244,6 +250,6 @@ const Widget = ({widget, preview, dispatch}) => {
     )
 };
 
-const WidgetContainer = connect(stateToPropsMapper)(Widget);
+const WidgetContainer = connect(stateToPropsMapper, dispatchToPropsMapper)(Widget);
 
 export default WidgetContainer;

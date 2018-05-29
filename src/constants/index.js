@@ -10,3 +10,5 @@ export const NAME_CHANGED = 'NAME_CHANGED';
 export const LIST_TYPE_CHANGED = 'LIST_TYPE_CHANGED';
 export const SRC_CHANGED = 'SRC_CHANGED';
 export const URL_CHANGED = 'URL_CHANGED';
+export const MOVE_UP = 'MOVE_UP';
+export const MOVE_DOWN = 'MOVE_DOWN';

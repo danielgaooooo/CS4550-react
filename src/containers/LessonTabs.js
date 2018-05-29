@@ -38,7 +38,6 @@ export default class LessonTabs
     };
 
     findAllLessons() {
-
         this.lessonService.findAllLessonsForModule(this.props.match.params.courseId,
             this.state.moduleId)
             .then((lessons) => {

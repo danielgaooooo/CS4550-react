@@ -48,7 +48,6 @@ export default class LessonRow extends React.Component {
 
     render() {
         return (
-
             <div className="btn-group-vertical">
                 <div hidden={this.state.editing}>
                     <li className="nav-item, row" style={{paddingLeft: 15, paddingRight: 15}}>

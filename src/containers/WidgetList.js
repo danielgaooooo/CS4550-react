@@ -6,10 +6,25 @@ import WidgetContainer from '../components/Widget'
 class WidgetList extends Component {
     constructor(props) {
         super(props);
-        this.props.findAllWidgets();
+        this.state = {
+            lessonId: ''
+        };
+    }
+
+    componentDidMount() {
+        this.setState({lessonId: this.props.match.params.lessonId},
+            () => this.props.findAllWidgets(this.state.lessonId));
+    }
+
+    componentWillReceiveProps(newProps) {
+        if (newProps.match.params.lessonId !== this.state.lessonId) {
+            this.setState({lessonId: newProps.match.params.lessonId},
+                () => this.props.findAllWidgets(this.state.lessonId));
+        }
     }
 
     render() {
+        let lessonId = this.state.lessonId;
         return (
             <div>
                 <ul style={{paddingLeft: 0}}>
@@ -26,7 +41,7 @@ class WidgetList extends Component {
                 </button>
                 <button className="btn float-right"
                         title="Save"
-                        onClick={this.props.save}>
+                        onClick={() => this.props.save(lessonId)}>
                     <i className="fa fa-save"></i>
                 </button>
                 <button className="btn float-right"
@@ -52,14 +67,14 @@ const stateToPropertiesMapper = (state) => ({
 });
 
 const dispatcherToPropsMapper = dispatch => ({
-    findAllWidgets: () => actions.findAllWidgets(dispatch),
+    findAllWidgets: (lessonId) => actions.findAllWidgetsForLesson(dispatch, lessonId),
     addWidget: () => actions.addWidget(dispatch),
-    save: () => actions.save(dispatch),
+    save: (lessonId) => actions.save(dispatch, lessonId),
     preview: () => actions.preview(dispatch)
 });
 
 const App = connect(
     stateToPropertiesMapper,
-    dispatcherToPropsMapper)(WidgetList)
+    dispatcherToPropsMapper)(WidgetList);
 
 export default App;
