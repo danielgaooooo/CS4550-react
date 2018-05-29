@@ -125,7 +125,7 @@ const widgetReducer = (state = {widgets: [], preview: false}, action) => {
                 headers: {
                     'content-type': 'application/json'
                 }
-            });
+            }).then(() => window.alert('Save successful'));
             return state;
 
         case constants.FIND_ALL_WIDGETS:
