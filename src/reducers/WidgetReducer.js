@@ -90,7 +90,7 @@ const widgetReducer = (state = {widgets: [], preview: false}, action) => {
                if (widget.precedence === swapDown && widget.id !== action.id) {
                    widget.precedence -= 1;
                }
-               return Object.assign({}, widget);;
+               return Object.assign({}, widget);
             });
             let sortedDowns = unsortedDownsMedian.sort((a, b) => a.precedence - b.precedence);
             return {

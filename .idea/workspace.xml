@@ -2,13 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="516394a6-3e44-421b-89e4-98dda0c29704" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/actions/index.js" afterPath="$PROJECT_DIR$/src/actions/index.js" />
-      <change beforePath="$PROJECT_DIR$/src/components/LessonRow.js" afterPath="$PROJECT_DIR$/src/components/LessonRow.js" />
-      <change beforePath="$PROJECT_DIR$/src/components/Widget.js" afterPath="$PROJECT_DIR$/src/components/Widget.js" />
-      <change beforePath="$PROJECT_DIR$/src/constants/index.js" afterPath="$PROJECT_DIR$/src/constants/index.js" />
-      <change beforePath="$PROJECT_DIR$/src/containers/LessonTabs.js" afterPath="$PROJECT_DIR$/src/containers/LessonTabs.js" />
-      <change beforePath="$PROJECT_DIR$/src/containers/WidgetList.js" afterPath="$PROJECT_DIR$/src/containers/WidgetList.js" />
       <change beforePath="$PROJECT_DIR$/src/reducers/WidgetReducer.js" afterPath="$PROJECT_DIR$/src/reducers/WidgetReducer.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -108,8 +101,8 @@
       <file leaf-file-name="WidgetReducer.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/reducers/WidgetReducer.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="430">
-              <caret line="89" column="76" lean-forward="false" selection-start-line="89" selection-start-column="76" selection-end-line="89" selection-end-column="76" />
+            <state relative-caret-position="1380">
+              <caret line="92" column="48" lean-forward="true" selection-start-line="92" selection-start-column="48" selection-end-line="92" selection-end-column="48" />
               <folding />
             </state>
           </provider>
@@ -330,12 +323,12 @@
       <workItem from="1526407894276" duration="54431000" />
       <workItem from="1527358766990" duration="1337000" />
       <workItem from="1527526448725" duration="19367000" />
-      <workItem from="1527601915067" duration="6118000" />
+      <workItem from="1527601915067" duration="6183000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="81751000" />
+    <option name="totallyTimeSpent" value="81816000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="337" y="23" width="1103" height="821" extended-state="0" />
@@ -758,8 +751,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/reducers/WidgetReducer.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="430">
-          <caret line="89" column="76" lean-forward="false" selection-start-line="89" selection-start-column="76" selection-end-line="89" selection-end-column="76" />
+        <state relative-caret-position="1380">
+          <caret line="92" column="48" lean-forward="true" selection-start-line="92" selection-start-column="48" selection-end-line="92" selection-end-column="48" />
           <folding />
         </state>
       </provider>
