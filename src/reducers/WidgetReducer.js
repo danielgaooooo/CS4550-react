@@ -119,7 +119,7 @@ const widgetReducer = (state = {widgets: [], preview: false}, action) => {
             return JSON.parse(JSON.stringify(newState));
 
         case constants.SAVE:
-            fetch('http://localhost:8080/api/lesson/' + action.lessonId + '/widget/save', {
+            fetch('https://cs4550-hw1.herokuapp.com/api/lesson/' + action.lessonId + '/widget/save', {
                 method: 'post',
                 body: JSON.stringify(state.widgets),
                 headers: {

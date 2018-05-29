@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import CourseList from './CourseList';
 import CourseEditor from './CourseEditor';
-import HomePage from './HomePage';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 
 

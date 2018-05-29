@@ -1,5 +1,4 @@
 import * as constants from "../constants"
-import {DELETE_WIDGET} from "../constants";
 
 export const textChanged = (dispatch, widgetId, newText) => {
     dispatch({
@@ -65,7 +64,7 @@ export const moveDown = (dispatch, widgetId) => (
 );
 
 export const findAllWidgets = dispatch => {
-    fetch('http://localhost:8080/api/widget')
+    fetch('https://cs4550-hw1.herokuapp.com/api/widget')
         .then(response => (response.json()))
         .then(widgets => dispatch({
             type: constants.FIND_ALL_WIDGETS,
@@ -74,7 +73,7 @@ export const findAllWidgets = dispatch => {
 };
 
 export const findAllWidgetsForLesson = (dispatch, lessonId) => {
-    fetch('http://localhost:8080/api/lesson/' + lessonId + '/widget')
+    fetch('https://cs4550-hw1.herokuapp.com/api/lesson/' + lessonId + '/widget')
         .then(response => (response.json()))
         .then(widgets => dispatch({
             type: constants.FIND_ALL_WIDGETS,

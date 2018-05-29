@@ -1,12 +1,11 @@
 import React from 'react'
 import ModuleList from './ModuleList'
 import LessonTabs from './LessonTabs'
-import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
+import {Route} from 'react-router-dom';
 import CourseService from "../services/CourseService";
 import App from './WidgetList';
 
-export default class CourseEditor
-    extends React.Component {
+export default class CourseEditor extends React.Component {
 
     constructor(props) {
         super(props);
