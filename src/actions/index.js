@@ -64,7 +64,7 @@ export const moveDown = (dispatch, widgetId) => (
 );
 
 export const findAllWidgets = dispatch => {
-    fetch('https://cs4550-hw1.herokuapp.com/api/widget')
+    fetch('https://cs4550-springboot.herokuapp.com/api/widget')
         .then(response => (response.json()))
         .then(widgets => dispatch({
             type: constants.FIND_ALL_WIDGETS,
@@ -73,7 +73,7 @@ export const findAllWidgets = dispatch => {
 };
 
 export const findAllWidgetsForLesson = (dispatch, lessonId) => {
-    fetch('https://cs4550-hw1.herokuapp.com/api/lesson/' + lessonId + '/widget')
+    fetch('https://cs4550-springboot.herokuapp.com/api/lesson/' + lessonId + '/widget')
         .then(response => (response.json()))
         .then(widgets => dispatch({
             type: constants.FIND_ALL_WIDGETS,
