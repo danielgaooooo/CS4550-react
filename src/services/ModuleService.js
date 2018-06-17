@@ -1,7 +1,7 @@
 const MODULE_API_URL =
-    'https://cs4550-hw1.herokuapp.com/api/course/CID/module';
+    'https://cs4550-springboot.herokuapp.com/api/course/CID/module';
 const MODULE_API_URL_SHORT =
-    'https://cs4550-hw1.herokuapp.com/api/module';
+    'https://cs4550-springboot.herokuapp.com/api/module';
 
 let _singleton = Symbol();
 export default class ModuleService {

@@ -1,5 +1,5 @@
 let _singleton = Symbol();
-const COURSE_API_URL = 'https://cs4550-hw1.herokuapp.com/api/course';
+const COURSE_API_URL = 'https://cs4550-springboot.herokuapp.com/api/course';
 
 
 class CourseService {
